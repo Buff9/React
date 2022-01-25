@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from "react";
+import User from "./Components/User";
+import Comments from "./Components/comments";
+import Posts from "./Components/posts";
+import "./App.css"
+export default function App() {
 
-function App() {
+
+  let [usersList, setUsersList] = useState([]);
+  let [commentList, setCommentList] = useState([]);
+  let [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => {
+          setUsersList(users);
+        });
+    fetch('https://jsonplaceholder.typicode.com/comments')
+        .then(response => response.json())
+        .then(comments => {
+          setCommentList(comments);
+        });
+    fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(posts => {
+          setPostList(posts);
+        });
+
+
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <div className={'wrapper'}>
+
+
+          <div className={'top'}>
+            <div className={'top-left'}>
+              <h1>Users</h1>
+              {usersList.map(user => <User id={user.id} name={user.name} username={user.username}/>)}
+
+            </div>
+
+            <div className={'top-right'}>
+              <div className={'top-right-title'}><h1>Comments</h1></div>
+              <div className={'top-right-text'}>
+                {commentList.map(comments => <Comments id={comments.id} name={comments.name} email={comments.email} body={comments.body}/>)}
+              </div>
+            </div>
+          </div>
+
+          <div className={'bottom'}>
+            <div className={'bottom-title'}><h1>Posts</h1></div>
+            <div className={'bottom-text'}>
+              {postList.map(posts => <Posts id={posts.id} title={posts.title} body={posts.body}/>)}
+            </div>
+          </div>
+
+        </div>
+      </div>
   );
 }
-
-export default App;
