@@ -38,8 +38,9 @@ export default function App() {
           <div className={'top'}>
             <div className={'top-left'}>
               <h1>Users</h1>
-              {usersList.map(user => <User id={user.id} name={user.name} username={user.username}/>)}
-
+                <div className={'top-left-text'}>
+                    {usersList.map(user => <User id={user.id} name={user.name} username={user.username}/>)}
+                </div>
             </div>
 
             <div className={'top-right'}>

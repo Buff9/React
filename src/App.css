@@ -1,56 +1,51 @@
+body{
+  background: darkgrey;
+  overflow: hidden;
+}
 .wrapper{
   width: 60%;
   margin: 0 auto;
 }
 
 
-
 .top{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 50vh;
+  height: 48vh;
   overflow: hidden;
-
 }
-.top-left{
+.top-left, .top-right{
   width: 50%;
-
 }
-.top-right{
-  width: 50%;
+.top-left-text{
+  height: 84%;
   overflow: auto;
-
 }
 .top-right-title{
   display:block;
-  position: sticky; top: 0; z-index: 1;
 }
 .top-right-text{
-  overflow: auto;
+  overflow: scroll;
   height: 84%;
-
 }
 .top-right-text::-webkit-scrollbar {
   display: none;
 }
 
 
-
 .bottom{
-  height: 50vh;
-  overflow: auto;
+  height: 48vh;
 }
 .bottom-title{
   display:block;
-  position: sticky; top: 0; z-index: 1;
-
 }
 .bottom-text{
-  overflow: auto;
+  overflow: scroll;
   height: 84%;
-
 }
-.bottom-text::-webkit-scrollbar {
+.bottom-text::-webkit-scrollbar,
+.top-right-text::-webkit-scrollbar,
+.top-left-text::-webkit-scrollbar {
   display: none;
 }
